@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Калькулятор проектов 3.11</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Ye18Nmj6icV_vW_AEZ3vo6wXpqpam_Rx9qqT6Ao7h9n0b95B-tje_bY3wMrJevR9-pJm2AU6hi3b-dorUtGJQaQsenOt83CJuESIB3CZKZiCje6FJ6TjKulhF58OefTD4OwVwlw_Xh4kBHNPsXOB0FwHwf3khQOHddZkb-aRZPsWDaxGaXPOCkRVTfnK2QcYE3bluEEOytEcq0GFmtWvJVeHIkHcyjvvQXMzm1aRSDWijK6dq7fM9DZooLOhlIUnAtUYxoQvJ9j1nr8bnmWP-Nge5t-gl7yS4Z-D-2U7o2lr_NFcxFl7imHt6uF4S_wAtv2oEp1dtasxMGjyeAOQ5PqSqaN-08UZN8gw-qNrvDmCBGSkiSKwMBy7yVs0WXYfYZ_D5f2saM9UAFfzK33xNUQzPBEXMdABNaUDwXDGrutEGABcMAYKN5o-t4R5ZVBoi5iwRdk8BytIRO1w5wwW4g" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jaGF0Z3B0LmNvbS9iYWNrZW5kLWFwaS9lc3R1YXJ5L2NvbnRlbnQ_aWQ9ZmlsZV8wMDAwMDAwMDViNmM4MjExYmMwMTI3YTg1YzU2ZGEyNCZmbj0lRDAlOUElRDAlQjAlRDAlQkIlRDElOEMlRDAlQkElRDElODMlRDAlQkIlRDElOEYlRDElODIlRDAlQkUlRDElODAlMjUyMCVEMCVCRiVEMSU4MCVEMCVCRSVEMCVCNSVEMCVCQSVEMSU4MiVEMCVCRSVEMCVCMiUyNTIwMy4xMS5odG1sJmNkPWF0dGFjaG1lbnQmdHM9NDk2Nzg4JnA9ZnMmY2lkPTEmc2lnPTdhZGI2NzAxOTE2Yzk4YmVlZDViZGE5MTUyMTc3YTBlYjYzZmM4OWQ1YjRlZDVjODJlMzBiZjAyMDFhYjQ2M2Emdj0w"/><style>
+:root{--navy:#17365d;--blue:#d9eaf7;--green:#e2f0d9;--yellow:#fff2cc;--orange:#fce4d6;--border:#d9e1f2;--text:#1f2937;--muted:#667085}
+*{box-sizing:border-box} body{font-family:Arial,sans-serif;margin:0;background:#f5f7fa;color:var(--text)} .wrap{max-width:1240px;margin:0 auto;padding:24px}
+.hero{background:var(--navy);color:white;padding:22px 26px;border-radius:14px}.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:center}.hero-copy{min-width:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.hero button{border:0;border-radius:9px;padding:11px 15px;font-weight:700;font-size:14px;cursor:pointer}.reset-btn{background:#fff;color:var(--navy)}.pdf-btn{background:#e2f0d9;color:#17365d}.hero button:hover{filter:brightness(.97)} h1{font-size:24px;margin:0 0 8px} .hero p{margin:0;opacity:.9}
+.card{background:white;border:1px solid var(--border);border-radius:14px;padding:20px;margin-top:18px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.ticket-input{width:100%;max-width:520px;padding:12px 14px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px;color:var(--text);background:#fff}.ticket-input:focus{outline:2px solid #93c5fd;outline-offset:1px;border-color:#60a5fa}
+.section-title{font-weight:700;font-size:17px;margin:0 0 14px} .grid{display:grid;grid-template-columns:60px 1fr 1fr 170px 140px;gap:8px;align-items:center}
+.head{font-weight:700;background:var(--blue);padding:10px;border-radius:8px} select,input{width:100%;padding:9px 10px;border:1px solid #cfd8e3;border-radius:8px;background:white;font-size:14px}
+.service-row{display:contents} .service-row>div{padding:4px 0} .slot{margin-top:18px;border-top:4px solid var(--navy)} .slot.hidden{display:none}
+.slot-title{font-weight:700;font-size:18px;margin:0 0 12px} .metrics{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px} .metric{background:#f8fafc;padding:10px 14px;border-radius:9px;min-width:180px} .metric b{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+.question{display:grid;grid-template-columns:1.8fr 1fr 70px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #eef2f6} .qweight{text-align:center;font-weight:700}
+.stage-head,.stage{display:grid;grid-template-columns:55px 2fr 130px 120px 90px 1.2fr 100px 110px;gap:8px;align-items:center} .stage-head{font-weight:700;background:var(--green);padding:9px;border-radius:8px;margin-top:10px} .stage{padding:8px 0;border-bottom:1px solid #eef2f6} .stage.on{background:#f4fbf1} .stage input[type=checkbox]{width:20px;height:20px}
+.note{font-size:12px;color:var(--muted);margin-top:4px} .special{background:var(--yellow);padding:12px;border-radius:10px;margin:10px 0;display:grid;grid-template-columns:260px 220px;gap:10px;align-items:center} .warning{color:#a15c00} .total{font-size:18px;font-weight:700;margin-top:12px;text-align:right} .muted{color:var(--muted)}
+@media(max-width:850px){.hero-top{align-items:flex-start;flex-direction:column}.hero-actions{justify-content:flex-start}.grid,.question,.stage-head,.stage{grid-template-columns:1fr} .head{display:none} .special{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div class="hero"><div class="hero-top"><div class="hero-copy"><h1>Калькулятор оценки проектов 3.11</h1><p>До 5 услуг одновременно. Каждая услуга оценивается независимо.</p></div><div class="hero-actions"><button class="reset-btn" type="button" onclick="resetAll()">Сбросить всё</button><button class="pdf-btn" type="button" onclick="downloadPdf()">Скачать PDF</button></div></div></div>
+<div class="card"><div class="section-title">Тикет</div><input class="ticket-input" id="ticketInput" type="text" placeholder="Введите номер или название тикета" autocomplete="off"></div>
+<div class="card"><div class="section-title">1. Выбор услуг</div><div class="grid" id="serviceGrid">
+<div class="head">№</div><div class="head">Тип услуги</div><div class="head">Подтип услуги</div><div class="head">Сложность</div><div class="head">Итого, SP</div>
+</div></div><div id="slots"></div>
+</div><script>const DATA={"services":{"Качественное исследование":["Глубинное интервью","Офлайн-исследование","Фокус-группы","Юзабилити-тестирование","Дневниковые исследования, онлайн-форум","Расшифровка интервью, составление протокола","Подготовка гайда","Подготовка отчета"],"Количественное исследование":["Проект под ключ","Кодировка","Обработка данных","Подготовка отчета","Программинг анкеты","Разработка анкеты"],"Кабинетное исследование":["Майнинг","Анализ рынка","Анализ конкурентов"],"Рекрутинг":["Качественный рекрут по базе","Качественный рекрут через агентство","Количественный рекрут"],"User Hour":["- (нет подпитипа)"],"Дополнительные услуги":["Консультация"]},"questions":{"1":{"text":"1. Тип исследуемого сервиса (по аудитории)","answers":[{"label":"b2c сервис","weight":1},{"label":"сложный технический сервис (b2c)","weight":2},{"label":"b2b сервис","weight":3}]},"2":{"text":"2. Проводилось ли подобное исследование ранее?","answers":[{"label":"да","weight":1},{"label":"нет","weight":2}]},"3":{"text":"3. Уровень достижимости аудитории","answers":[{"label":"легкая","weight":1},{"label":"труднодостижимая","weight":2},{"label":"труднодостижимая+ (инклюзия, инвалидность итд)","weight":3}]},"4":{"text":"4. Количество сегментов аудитории","answers":[{"label":"1-2 сегмента","weight":1},{"label":"2-5 сегментов","weight":2},{"label":"5-10 сегментов","weight":3}]},"5":{"text":"5.  Кол-во разрезов для анализа","answers":[{"label":"до 5","weight":1},{"label":"5-10","weight":2},{"label":"более 10","weight":3}]},"6":{"text":"6. Сложность методики и целей","answers":[{"label":"простая (гипотезы и вопросы от команды заказчика)","weight":1},{"label":"средняя (размытый запрос от команды, нужна помощь исследователя в формулировании цели и задач исследования)","weight":2},{"label":"сложная (фреймворки, проективные методики, либо нужно придумать комбинацию методов, сбор стратегии)","weight":3}]},"7":{"text":"7. Количество респондентов в выборке","answers":[{"label":"8-10 человек","weight":1},{"label":"11-20 человек","weight":2},{"label":"20+ человек","weight":3}]},"8":{"text":"8. Длительность одного интервью","answers":[{"label":"30 минут","weight":1},{"label":"60 минут","weight":2},{"label":"90 минут","weight":3}]},"9":{"text":"9. Длительность анкеты","answers":[{"label":"До 10 минут","weight":1},{"label":"10-15 минут","weight":2},{"label":"20+ минут","weight":3}]},"10":{"text":"10. Количество строк/размер выборки в массиве данных","answers":[{"label":"300","weight":1},{"label":"600","weight":2},{"label":"1200","weight":3},{"label":"3000 и более","weight":3}]},"11":{"text":"11. Сложность смысла открытых вопросов","answers":[{"label":"Легкая (названия, перечисления)","weight":1},{"label":"Средняя (высказывания)","weight":2},{"label":"Высокая (тексты/сложная тема)","weight":3}]},"12":{"text":"12. Количество источников информации","answers":[{"label":"До 10 источников","weight":1},{"label":"До 20 источников","weight":2},{"label":"20 источников и более","weight":3}]},"13":{"text":"13. Количество конкурентов","answers":[{"label":"До 20 конкурентов","weight":1},{"label":"До 30 конкурентов","weight":2},{"label":"30 конкурентов и более","weight":3}]},"14":{"text":"14. Сложность описания ЦА (влияет на уточнения с агентствами)","answers":[{"label":"Легкая","weight":1},{"label":"Средняя","weight":2},{"label":"Сложная","weight":3}]},"15":{"text":"15. На каком языке будет исследование?","answers":[{"label":"Русский","weight":1},{"label":"Английский","weight":2},{"label":"Турецкий","weight":3},{"label":"Другое","weight":3}]},"16":{"text":"16. Формат отчета","answers":[{"label":"Wiki","weight":1},{"label":"Word","weight":2},{"label":"Power Point","weight":3},{"label":"Excel","weight":3}]}},"qmap":{"Качественное исследование|Глубинное интервью":[1,2,6,7,8,15],"Качественное исследование|Офлайн-исследование":[1,2,6,7,8,15],"Качественное исследование|Фокус-группы":[1,2,6,7,8,15],"Качественное исследование|Юзабилити-тестирование":[1,2,6,7,8,15],"Качественное исследование|Дневниковые исследования, онлайн-форум":[1,2,6,7,8,15],"Качественное исследование|Расшифровка интервью, составление протокола":[7,8,15],"Качественное исследование|Подготовка гайда":[1,2,6,15],"Качественное исследование|Подготовка отчета":[15,16],"Количественное исследование|Проект под ключ":[1,2,4,5,6,9,11,15],"Количественное исследование|Кодировка":[10,11,15],"Количественное исследование|Обработка данных":[4,5,10,11,15],"Количественное исследование|Подготовка отчета":[5,15,16],"Количественное исследование|Программинг анкеты":[1,2,4,9,11,15],"Количественное исследование|Разработка анкеты":[1,2,4,9,11,15],"Кабинетное исследование|Майнинг":[2,6,10,15],"Кабинетное исследование|Анализ рынка":[2,6,12,15],"Кабинетное исследование|Анализ конкурентов":[2,6,13,15],"Рекрутинг|Качественный рекрут по базе":[3,7,14,15],"Рекрутинг|Качественный рекрут через агентство":[3,7,14,15],"Рекрутинг|Количественный рекрут":[3,4,14,15],"User Hour|- (нет подпитипа)":[3,14,15],"Дополнительные услуги|Консультация":[2,6,15]},"stages":{"Качественное исследование|Глубинное интервью":[{"order":1,"id":"STG_001","name":"Установочная встреча, брифинг, изучение задачи","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":2,"id":"STG_002","name":"Создание дизайна исследования, методология","type":"Фиксированный","base":1.41,"std":2.52,"max":4.19,"opt":"EmptyList","note":""},{"order":3,"id":"STG_003","name":"Создание инструментария, сценария","type":"Фиксированный","base":2.82,"std":5.04,"max":8.38,"opt":"EmptyList","note":""},{"order":4,"id":"STG_004","name":"Анализ данных, подготовка отчёта","type":"Фиксированный","base":16.95,"std":22.69,"max":36.65,"opt":"EmptyList","note":""},{"order":5,"id":"STG_005","name":"Отчётная встреча","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":6,"id":"STG_006","name":"Проведение интервью (изменяемое значение, укажи количество интервью","type":"Изменяемый","base":0.71,"std":1.09,"max":1.57,"opt":"EmptyList","note":""},{"order":7,"id":"STG_007","name":"Расшифровка интервью, подготовка протокола (изменяемое значение, укажи количество интервью)","type":"Изменяемый","base":1.06,"std":1.26,"max":1.57,"opt":"EmptyList","note":""}],"Качественное исследование|Офлайн-исследование":[{"order":1,"id":"STG_008","name":"Установочная встреча, брифинг, изучение задачи","type":"Фиксированный","base":1.41,"std":2.1,"max":3.14,"opt":"EmptyList","note":""},{"order":2,"id":"STG_009","name":"Создание дизайна исследования, методология","type":"Фиксированный","base":2.12,"std":3.36,"max":5.24,"opt":"EmptyList","note":""},{"order":3,"id":"STG_010","name":"Создание инструментария, сценария","type":"Фиксированный","base":2.82,"std":5.04,"max":8.38,"opt":"EmptyList","note":""},{"order":4,"id":"STG_011","name":"Анализ данных, подготовка отчёта","type":"Фиксированный","base":18.36,"std":25.21,"max":41.89,"opt":"EmptyList","note":""},{"order":5,"id":"STG_012","name":"Отчётная встреча","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":6,"id":"STG_013","name":"Проведение интервью (изменяемое значение, укажи количество интервью)","type":"Изменяемый","base":1.77,"std":2.52,"max":4.19,"opt":"EmptyList","note":""},{"order":7,"id":"STG_014","name":"Расшифровка интервью, подготовка протокола (изменяемое значение, укажи количество интервью)","type":"Изменяемый","base":1.06,"std":1.26,"max":1.57,"opt":"EmptyList","note":""}],"Качественное исследование|Фокус-группы":[{"order":1,"id":"STG_015","name":"Установочная встреча, брифинг, изучение задачи","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":2,"id":"STG_016","name":"Создание дизайна исследования, методология","type":"Фиксированный","base":2.12,"std":3.36,"max":5.24,"opt":"EmptyList","note":""},{"order":3,"id":"STG_017","name":"Создание инструментария, сценария","type":"Фиксированный","base":3.53,"std":5.88,"max":9.42,"opt":"EmptyList","note":""},{"order":4,"id":"STG_018","name":"Отчётная встреча","type":"Фиксированный","base":1.06,"std":1.68,"max":2.62,"opt":"EmptyList","note":""},{"order":5,"id":"STG_019","name":"Проведение фокус-группы (изменяемые значения, укажи количество онлайн-ФГ)","type":"Изменяемый","base":1.06,"std":1.26,"max":3.14,"opt":"EmptyList","note":""},{"order":6,"id":"STG_020","name":"Расшифровка интервью (изменяемые значения, указано на 1 часовой онлайн-ФГ)","type":"Изменяемый","base":2.12,"std":2.52,"max":3.14,"opt":"EmptyList","note":""},{"order":7,"id":"STG_021","name":"Анализ данных, подготовка отчёта (изменяемые значения, указано на 1 часовой онлайн-ФГ)","type":"Изменяемый","base":3.53,"std":5.04,"max":8.38,"opt":"EmptyList","note":""}],"Качественное исследование|Юзабилити-тестирование":[{"order":1,"id":"STG_022","name":"Установочная встреча, брифинг, изучение задачи","type":"Фиксированный","base":1.41,"std":2.1,"max":3.14,"opt":"EmptyList","note":""},{"order":2,"id":"STG_023","name":"Создание дизайна исследования, методология","type":"Фиксированный","base":2.12,"std":3.36,"max":5.24,"opt":"EmptyList","note":""},{"order":3,"id":"STG_024","name":"Создание инструментария, сценария","type":"Фиксированный","base":3.53,"std":5.88,"max":9.42,"opt":"EmptyList","note":""},{"order":4,"id":"STG_025","name":"Анализ данных, подготовка отчёта","type":"Фиксированный","base":18.63,"std":24.37,"max":41.89,"opt":"EmptyList","note":""},{"order":5,"id":"STG_026","name":"Отчётная встреча","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":6,"id":"STG_027","name":"Проведение тестов (изменяемое значение, укажи количество респондентов)","type":"Изменяемый","base":0.92,"std":1.26,"max":1.78,"opt":"EmptyList","note":""},{"order":7,"id":"STG_028","name":"Расшифровка интервью (изменяемое значение, укажи количество интервью)","type":"Изменяемый","base":1.41,"std":1.68,"max":2.09,"opt":"EmptyList","note":""}],"Качественное исследование|Дневниковые исследования, онлайн-форум":[{"order":1,"id":"STG_029","name":"Установочная встреча, брифинг, изучение задачи","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":2,"id":"STG_030","name":"Создание дизайна исследования, методология","type":"Фиксированный","base":2.12,"std":3.36,"max":5.24,"opt":"EmptyList","note":""},{"order":3,"id":"STG_031","name":"Создание инструментария, сценария","type":"Фиксированный","base":3.53,"std":5.88,"max":9.42,"opt":"EmptyList","note":""},{"order":4,"id":"STG_032","name":"Анализ данных, подготовка отчёта","type":"Фиксированный","base":10.59,"std":14.28,"max":20.94,"opt":"EmptyList","note":""},{"order":5,"id":"STG_033","name":"Отчётная встреча","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":6,"id":"STG_034","name":"Полевые работы – сбор данных (изменяемые значения)","type":"Дневниковый этап","base":0.18,"std":0.42,"max":0.79,"opt":"EmptyList","note":"Введите два параметра: количество респондентов и количество дней исследования. Стоимость = респонденты × SP по сложности × дни."}],"Качественное исследование|Расшифровка интервью, составление протокола":[{"order":1,"id":"STG_035","name":"Расшифровка интервью / протокол (изменяемое значение, укажи количество)","type":"Изменяемый","base":1.06,"std":1.26,"max":1.57,"opt":"EmptyList","note":""}],"Качественное исследование|Подготовка гайда":[{"order":1,"id":"STG_036","name":"Подготовка гайда","type":"Фиксированный","base":2.82,"std":5.04,"max":8.38,"opt":"EmptyList","note":""}],"Качественное исследование|Подготовка отчета":[{"order":1,"id":"STG_037","name":"Подготовка отчёта (Wiki+презентация)","type":"Фиксированный","base":17.66,"std":24.37,"max":36.55,"opt":"EmptyList","note":""}],"Количественное исследование|Проект под ключ":[{"order":1,"id":"STG_038","name":"Работа с запросом / установочная встреча","type":"Фиксированный","base":0.71,"std":1.68,"max":2.09,"opt":"EmptyList","note":""},{"order":2,"id":"STG_039","name":"Разработка дизайна (методологии)","type":"Фиксированный","base":0.71,"std":3.36,"max":8.38,"opt":"EmptyList","note":""},{"order":3,"id":"STG_040","name":"Разработка и согласование драфта анкеты","type":"Фиксированный","base":5.65,"std":10.08,"max":16.76,"opt":"EmptyList","note":""},{"order":4,"id":"STG_041","name":"Программинг анкеты (в т.ч. тестирование, согласование ссылки) - по старому флоу","type":"Фиксированный","base":3.53,"std":5.88,"max":10.47,"opt":"EmptyList","note":""},{"order":5,"id":"STG_042","name":"Подготовка отчета (вики)","type":"Фиксированный","base":8.47,"std":16.8,"max":36.65,"opt":"EmptyList","note":""},{"order":6,"id":"STG_043","name":"Отчетная встреча (защита)","type":"Фиксированный","base":0.71,"std":1.68,"max":4.19,"opt":"EmptyList","note":""},{"order":7,"id":"STG_044","name":"Полевой этап (тикет на рекрут, ТЗ рекруту и панели, контроль поля) (Изменяемые значения)","type":"Выбор","base":2.82,"std":5.04,"max":8.38,"opt":"OPT_TURNKEY_FIELD","note":"Выберите размер выборки. SP берётся из таблицы 1 с учётом сложности проекта."},{"order":8,"id":"STG_045","name":"Кодировка (изменяемые значение)","type":"Выбор","base":4.24,"std":6.72,"max":10.47,"opt":"OPT_CODING","note":"Выберите размер выборки из подуслуги «Кодировка»."},{"order":9,"id":"STG_046","name":"Обработка данных (анализ) (изменяемое значение)","type":"Выбор","base":7.06,"std":13.44,"max":25.13,"opt":"OPT_PROCESSING","note":"Выберите размер выборки из подуслуги «Обработка данных»."},{"order":10,"id":"STG_047","name":"Подготовка отчета (pptx)","type":"Выбор","base":15.54,"std":26.89,"max":43.98,"opt":"OPT_REPORT_TURNKEY","note":"Выберите объём отчёта: 30 слайдов = ×1,0; 60 = ×1,2; 90 или 120+ = ×1,4 от ставки 30 слайдов."}],"Количественное исследование|Кодировка":[{"order":1,"id":"STG_048","name":"Кодировка\nРазмер выборки: 300","type":"Фиксированный","base":4.24,"std":6.72,"max":10.47,"opt":"EmptyList","note":""},{"order":2,"id":"STG_049","name":"Кодировка\nРазмер выборки: 600","type":"Фиксированный","base":4.66,"std":7.39,"max":11.52,"opt":"EmptyList","note":""},{"order":3,"id":"STG_050","name":"Кодировка\nРазмер выборки: 1200","type":"Фиксированный","base":5.08,"std":8.07,"max":12.57,"opt":"EmptyList","note":""},{"order":4,"id":"STG_051","name":"Кодировка\nРазмер выборки: 3000","type":"Фиксированный","base":5.51,"std":8.74,"max":13.61,"opt":"EmptyList","note":""}],"Количественное исследование|Обработка данных":[{"order":1,"id":"STG_052","name":"Обработка данных\nРазмер выборки: 300","type":"Фиксированный","base":7.06,"std":13.44,"max":25.13,"opt":"EmptyList","note":""},{"order":2,"id":"STG_053","name":"Обработка данных\nРазмер выборки: 600","type":"Фиксированный","base":7.77,"std":14.79,"max":27.65,"opt":"EmptyList","note":""},{"order":3,"id":"STG_054","name":"Обработка данных\nРазмер выборки: 1200","type":"Фиксированный","base":8.47,"std":16.13,"max":30.16,"opt":"EmptyList","note":""},{"order":4,"id":"STG_055","name":"Обработка данных\nРазмер выборки: 3000","type":"Фиксированный","base":9.18,"std":17.48,"max":32.67,"opt":"EmptyList","note":""}],"Количественное исследование|Подготовка отчета":[{"order":1,"id":"STG_056","name":"Подготовка отчета (pptx)","type":"Выбор","base":16.95,"std":28.57,"max":51.31,"opt":"OPT_REPORT_STANDALONE","note":"Выберите объём отчёта: 30 слайдов = ×1,0; 60 = ×1,2; 90 или 120+ = ×1,4 от ставки 30 слайдов."},{"order":2,"id":"STG_057","name":"Подготовка отчета (вики)","type":"Фиксированный","base":8.47,"std":16.8,"max":36.65,"opt":"EmptyList","note":""},{"order":3,"id":"STG_058","name":"Подготовка отчета (трекинги еженедельно / ежемесячно), 12 слайдов","type":"Фиксированный","base":4.24,"std":8.4,"max":12.57,"opt":"EmptyList","note":""}],"Количественное исследование|Программинг анкеты":[{"order":1,"id":"STG_059","name":"Программинг анкеты","type":"Фиксированный","base":3.53,"std":5.88,"max":10.47,"opt":"EmptyList","note":""}],"Количественное исследование|Разработка анкеты":[{"order":1,"id":"STG_060","name":"Разработка анкеты","type":"Фиксированный","base":5.65,"std":10.08,"max":16.76,"opt":"EmptyList","note":""}],"Кабинетное исследование|Майнинг":[{"order":1,"id":"STG_061","name":"Брифинг заказчика","type":"Фиксированный","base":0.35,"std":0.84,"max":1.57,"opt":"EmptyList","note":""},{"order":2,"id":"STG_062","name":"Определение источников","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":3,"id":"STG_063","name":"Сбор данных","type":"Фиксированный","base":5.65,"std":10.08,"max":18.85,"opt":"EmptyList","note":""},{"order":4,"id":"STG_064","name":"Систематизация данных","type":"Фиксированный","base":2.82,"std":3.36,"max":6.28,"opt":"EmptyList","note":""}],"Кабинетное исследование|Анализ рынка":[{"order":1,"id":"STG_065","name":"Брифинг заказчика","type":"Фиксированный","base":0.35,"std":0.84,"max":1.57,"opt":"EmptyList","note":""},{"order":2,"id":"STG_066","name":"Определение границ рынка","type":"Фиксированный","base":1.41,"std":2.52,"max":4.19,"opt":"EmptyList","note":""},{"order":3,"id":"STG_067","name":"Сбор данных","type":"Фиксированный","base":7.06,"std":12.6,"max":20.94,"opt":"EmptyList","note":""},{"order":4,"id":"STG_068","name":"Систематизация данных","type":"Фиксированный","base":1.41,"std":3.36,"max":6.28,"opt":"EmptyList","note":""},{"order":5,"id":"STG_069","name":"Сегментация рынка","type":"Фиксированный","base":1.41,"std":2.52,"max":4.19,"opt":"EmptyList","note":""},{"order":6,"id":"STG_070","name":"Анализ и выводы","type":"Фиксированный","base":2.82,"std":5.04,"max":8.38,"opt":"EmptyList","note":""}],"Кабинетное исследование|Анализ конкурентов":[{"order":1,"id":"STG_071","name":"Брифинг заказчика","type":"Фиксированный","base":0.35,"std":0.84,"max":1.57,"opt":"EmptyList","note":"В исходнике в колонке количества стоит «Кол-во шт», но этап не отмечен оранжевым — считается фиксированным."},{"order":2,"id":"STG_072","name":"Определение конкурентов и критериев для сравнения","type":"Фиксированный","base":0.71,"std":1.26,"max":2.09,"opt":"EmptyList","note":""},{"order":3,"id":"STG_073","name":"Сбор данных","type":"Фиксированный","base":14.12,"std":25.21,"max":41.89,"opt":"EmptyList","note":""},{"order":4,"id":"STG_074","name":"Систематизация данных","type":"Фиксированный","base":1.41,"std":3.36,"max":6.28,"opt":"EmptyList","note":""},{"order":5,"id":"STG_075","name":"Анализ и выводы","type":"Фиксированный","base":2.82,"std":5.04,"max":8.38,"opt":"EmptyList","note":""}],"Рекрутинг|Качественный рекрут по базе":[{"order":1,"id":"STG_076","name":"Подготовка","type":"Фиксированный","base":1.41,"std":2.52,"max":5.24,"opt":"EmptyList","note":""},{"order":2,"id":"STG_077","name":"Полевой этап","type":"Фиксированный","base":11.3,"std":15.12,"max":21.99,"opt":"EmptyList","note":""},{"order":3,"id":"STG_078","name":"Проверка результатов","type":"Фиксированный","base":2.12,"std":3.36,"max":4.19,"opt":"EmptyList","note":""},{"order":4,"id":"STG_079","name":"Завершение проекта","type":"Фиксированный","base":0.21,"std":0.34,"max":0.52,"opt":"EmptyList","note":""}],"Рекрутинг|Качественный рекрут через агентство":[{"order":1,"id":"STG_080","name":"Подготовка","type":"Фиксированный","base":1.41,"std":2.52,"max":5.24,"opt":"EmptyList","note":""},{"order":2,"id":"STG_081","name":"Полевой этап","type":"Фиксированный","base":7.06,"std":9.24,"max":14.66,"opt":"EmptyList","note":""},{"order":3,"id":"STG_082","name":"Проверка результатов","type":"Фиксированный","base":0.71,"std":0.84,"max":2.09,"opt":"EmptyList","note":""},{"order":4,"id":"STG_083","name":"Завершение проекта","type":"Фиксированный","base":0.71,"std":0.84,"max":2.09,"opt":"EmptyList","note":""}],"Рекрутинг|Количественный рекрут":[{"order":1,"id":"STG_084","name":"Подготовка","type":"Фиксированный","base":1.41,"std":1.68,"max":2.09,"opt":"EmptyList","note":""},{"order":2,"id":"STG_085","name":"Полевой этап","type":"Фиксированный","base":2.82,"std":5.04,"max":9.42,"opt":"EmptyList","note":""},{"order":3,"id":"STG_086","name":"Проверка результатов","type":"Фиксированный","base":0.71,"std":0.84,"max":1.05,"opt":"EmptyList","note":""},{"order":4,"id":"STG_087","name":"Завершение проекта","type":"Фиксированный","base":0.71,"std":0.84,"max":1.05,"opt":"EmptyList","note":""},{"order":5,"id":"STG_092","name":"Размер выборки","type":"Выбор","base":7.06,"std":13.44,"max":25.13,"opt":"OPT_REC_SAMPLE","note":"Выберите размер выборки. SP определяется по выбранному размеру и сложности и прибавляется к итогу без множителя по количеству ссылок."}],"User Hour|- (нет подпитипа)":[{"order":1,"id":"STG_088","name":"Внешний рекрут (агентство)","type":"Фиксированный","base":0.71,"std":1.68,"max":4.19,"opt":"EmptyList","note":""},{"order":2,"id":"STG_089","name":"Внешний рекрут (база)","type":"Фиксированный","base":2.82,"std":5.04,"max":10.47,"opt":"EmptyList","note":""},{"order":3,"id":"STG_090","name":"Модерация","type":"Фиксированный","base":1.06,"std":1.68,"max":3.14,"opt":"EmptyList","note":""}],"Дополнительные услуги|Консультация":[{"order":1,"id":"STG_091","name":"Консультация","type":"Фиксированный","base":0.71,"std":1.68,"max":4.19,"opt":"EmptyList","note":""}]},"options":{"OPT_CODING":[["Кодировка — Размер выборки: 300",4.24,6.72,10.47],["Кодировка — Размер выборки: 600",4.66,7.39,11.52],["Кодировка — Размер выборки: 1200",5.08,8.07,12.57],["Кодировка — Размер выборки: 3000",5.51,8.74,13.61]],"OPT_PROCESSING":[["Обработка данных — Размер выборки: 300",7.06,13.44,25.13],["Обработка данных — Размер выборки: 600",7.77,14.79,27.65],["Обработка данных — Размер выборки: 1200",8.47,16.13,30.16],["Обработка данных — Размер выборки: 3000",9.18,17.48,32.67]],"OPT_REC_SAMPLE":[["300",7.06,13.44,25.13],["600",7.77,14.79,27.65],["1200",8.47,16.13,30.16],["3000",9.18,17.48,32.67]],"OPT_REPORT_TURNKEY":[["30 слайдов",15.54,26.89,43.98],["60 слайдов",18.648,32.268,52.776],["90 слайдов",21.756,37.646,61.572],["120 слайдов и более",21.756,37.646,61.572]],"OPT_REPORT_STANDALONE":[["30 слайдов",16.95,28.57,51.31],["60 слайдов",20.34,34.284,61.572],["90 слайдов",23.73,39.998,71.834],["120 слайдов и более",23.73,39.998,71.834]],"OPT_TURNKEY_FIELD":[["300",2.82,5.04,8.38],["600",3.11,5.55,9.22],["1200",3.67,6.55,10.89],["3000",3.95,7.06,11.73]]},"special":{"Рекрутинг|Качественный рекрут по базе":{"label":"Количество респондентов","choices":["10-15","16-20","21-25","26-30"],"mult":{"10-15":1,"16-20":1.5,"21-25":1.7,"26-30":2.1}},"Рекрутинг|Качественный рекрут через агентство":{"label":"Количество респондентов","choices":["10-15","16-20","21-25","26-30"],"mult":{"10-15":1,"16-20":1.5,"21-25":1.8,"26-30":2.2}},"Рекрутинг|Количественный рекрут":{"label":"Количество ссылок","choices":["1-2 ссылки","Более 2 ссылок"],"mult":{"1-2 ссылки":1,"Более 2 ссылок":1.5}},"User Hour|- (нет подпитипа)":{"label":"Количество User Hour","number":true}}};
+const fmt=n=>Number.isFinite(n)?(Math.round(n*100)/100).toLocaleString('ru-RU',{maximumFractionDigits:2}):'';
+const typeNames=Object.keys(DATA.services); const grid=document.getElementById('serviceGrid'); const slots=document.getElementById('slots');
+function emptyState(){return {type:'',sub:'',answers:{},special:'',stages:{}}}
+const state=Array.from({length:5},()=>emptyState());
+const slotUI=Array(5).fill(null);
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+function option(value,text=value){const o=document.createElement('option');o.value=value;o.textContent=text;return o}
+function makeSelectors(i){
+ const n=el('div','',String(i+1)), td=el('div'), sd=el('div'), cd=el('div','muted','—'), total=el('div','muted','—');
+ const t=el('select');t.append(option('','Выберите тип'));typeNames.forEach(v=>t.append(option(v)));td.append(t);
+ const s=el('select');s.append(option('','Сначала тип'));sd.append(s);
+ [n,td,sd,cd,total].forEach(x=>grid.append(x));
+ t.onchange=()=>{state[i]=emptyState();state[i].type=t.value;s.innerHTML='';s.append(option('','Выберите подтип'));(DATA.services[t.value]||[]).forEach(v=>s.append(option(v)));renderSlot(i,cd,total)};
+ s.onchange=()=>{const nextSub=s.value;state[i].sub=nextSub;state[i].answers={};state[i].special='';state[i].stages={};renderSlot(i,cd,total)};
+ return {t,s,cd,total};
+}
+const refs=[];for(let i=0;i<5;i++)refs.push(makeSelectors(i));
+function getComplexity(st){const key=st.type+'|'+st.sub;if(!st.sub)return {label:'—',idx:null};const qs=DATA.qmap[key]||[];if(!qs.length)return {label:'Базовый',idx:0};for(const q of qs)if(st.answers[q]===undefined)return {label:'Заполните вопросы',idx:null};let m=Math.max(...qs.map(q=>st.answers[q]));return {label:['','Базовый','Стандартный','Максимальный'][m],idx:m-1}}
+function getMult(st){const key=st.type+'|'+st.sub,sp=DATA.special[key];if(!sp)return 1;if(sp.number){const n=Number(st.special);return n>0?n:null}return sp.mult[st.special]??null}
+function rate(stage,idx,choice){if(idx===null)return null;if(stage.type==='Выбор'){const arr=DATA.options[stage.opt]||[];const rec=arr.find(x=>x[0]===choice);return rec?rec[idx+1]:null}return [stage.base,stage.std,stage.max][idx]}
+function calcTotal(st){const c=getComplexity(st),mult=getMult(st);if(c.idx===null||mult===null)return null;const key=st.type+'|'+st.sub;let sum=0;for(const sg of DATA.stages[key]||[]){const ss=st.stages[sg.id]||{};if(!ss.on)continue;const r=rate(sg,c.idx,ss.option);if(r===null)return null;if(sg.type==='Изменяемый'){if(ss.qty==='')return null;const q=Number(ss.qty);if(!(q>=0))return null;sum+=q*r*mult}else if(sg.type==='Дневниковый этап'){const q=Number(ss.qty),d=Number(ss.days);if(!(q>0)||!(d>0))return null;sum+=q*r*d*mult}else if(sg.type==='Шаг 30 слайдов'){const q=Number(ss.qty);if(!(q>0))return null;sum+=Math.ceil(q/30)*r*mult}else if(sg.type==='Выбор')sum+=r;else sum+=r*mult}return sum}
+function insertSlotInOrder(i,box){
+ box.dataset.slotIndex=String(i);
+ const next=[...slots.children].find(x=>Number(x.dataset.slotIndex)>i);
+ if(next)slots.insertBefore(box,next);else slots.append(box);
+}
+function refreshSlot(i){
+ const st=state[i],ui=slotUI[i];if(!ui||!st.sub)return;
+ const c=getComplexity(st);ui.compCell.textContent=c.label;ui.mc.innerHTML=`<b>Сложность</b>${c.label}`;
+ const total=calcTotal(st);ui.totalCell.textContent=total===null?'—':fmt(total);ui.mt.innerHTML=`<b>Итого, SP</b>${total===null?'—':fmt(total)}`;
+ for(const [qid,cell] of Object.entries(ui.qWeights))cell.textContent=st.answers[qid]??'';
+ const key=st.type+'|'+st.sub;
+ for(const sg of DATA.stages[key]||[]){
+  const rowUI=ui.stageRows[sg.id];if(!rowUI)continue;
+  const ss=st.stages[sg.id]||{};
+  rowUI.row.classList.toggle('on',!!ss.on);
+  const rr=rate(sg,c.idx,ss.option);rowUI.rateCell.textContent=fmt(rr);
+  const cost=selectedStageCost(st,sg,ss);rowUI.costCell.textContent=cost===null?'':fmt(cost);
+ }
+}
+function renderSlot(i,compCell,totalCell){
+ const old=slotUI[i];if(old?.box)old.box.remove();slotUI[i]=null;
+ const st=state[i],key=st.type+'|'+st.sub;
+ if(!st.sub){compCell.textContent='—';totalCell.textContent='—';return}
+ const box=el('div','card slot');box.id='slot'+i;insertSlotInOrder(i,box);box.append(el('div','slot-title',`Услуга ${i+1}: ${st.type} — ${st.sub}`));
+ const metrics=el('div','metrics'),mc=el('div','metric'),mt=el('div','metric');metrics.append(mc,mt);box.append(metrics);
+ const ui={box,compCell,totalCell,mc,mt,qWeights:{},stageRows:{}};slotUI[i]=ui;
+ const sp=DATA.special[key];if(sp){const wrap=el('div','special');wrap.append(el('div','',sp.label));let inp;if(sp.number){inp=el('input');inp.type='number';inp.min='1';inp.placeholder='Введите количество'}else{inp=el('select');inp.append(option('','Выберите'));sp.choices.forEach(v=>inp.append(option(v)))}inp.value=st.special||'';const saveSpecial=()=>{st.special=inp.value;refreshSlot(i)};inp.onchange=saveSpecial;if(sp.number)inp.oninput=saveSpecial;wrap.append(inp);box.append(wrap)}
+ box.append(el('div','section-title','2. Определение сложности'));const qwrap=el('div');box.append(qwrap);
+ for(const qid of DATA.qmap[key]||[]){
+  const q=DATA.questions[qid],row=el('div','question');row.append(el('div','',q.text));const sel=el('select');sel.append(option('','Выберите ответ'));q.answers.forEach(a=>sel.append(option(String(a.weight)+'|'+a.label,a.label)));
+  if(st.answers[qid]!==undefined){const saved=String(st.answers[qid])+'|'+(st['answerLabel'+qid]||'');if([...sel.options].some(o=>o.value===saved))sel.value=saved}
+  const weightCell=el('div','qweight',st.answers[qid]??'');ui.qWeights[qid]=weightCell;
+  sel.onchange=()=>{if(!sel.value){delete st.answers[qid];delete st['answerLabel'+qid]}else{const p=sel.value.indexOf('|');st.answers[qid]=Number(sel.value.slice(0,p));st['answerLabel'+qid]=sel.value.slice(p+1)}refreshSlot(i)};
+  row.append(sel);row.append(weightCell);qwrap.append(row)
+ }
+ box.append(el('div','section-title','3. Этапы'));const sh=el('div','stage-head');['Вкл.','Этап','Тип','Кол-во / слайды / респ.','Дни','Вариант','Ставка SP','Стоимость SP'].forEach(x=>sh.append(el('div','',x)));box.append(sh);
+ const sw=el('div');box.append(sw);
+ for(const sg of DATA.stages[key]||[]){
+  const ss=st.stages[sg.id]||(st.stages[sg.id]={on:false,qty:'',days:'',option:''});const row=el('div','stage'+(ss.on?' on':''));
+  const ch=el('input');ch.type='checkbox';ch.checked=ss.on;ch.onchange=()=>{ss.on=ch.checked;refreshSlot(i)};row.append(ch);
+  const name=el('div','',sg.name);if(sg.note)name.append(el('div','note',sg.note));row.append(name);row.append(el('div','',sg.type));
+  const q=el('div');if(sg.type==='Изменяемый'||sg.type==='Шаг 30 слайдов'||sg.type==='Дневниковый этап'){const inp=el('input');inp.type='number';inp.min='0';inp.value=ss.qty;inp.placeholder=sg.type==='Шаг 30 слайдов'?'Слайды':(sg.type==='Дневниковый этап'?'Респонденты':'Количество');inp.oninput=()=>{ss.qty=inp.value;refreshSlot(i)};q.append(inp)}row.append(q);
+  const days=el('div');if(sg.type==='Дневниковый этап'){const dinp=el('input');dinp.type='number';dinp.min='1';dinp.value=ss.days;dinp.placeholder='Дни';dinp.oninput=()=>{ss.days=dinp.value;refreshSlot(i)};days.append(dinp)}row.append(days);
+  const ov=el('div');if(sg.type==='Выбор'){const sel=el('select');sel.append(option('','Выберите'));(DATA.options[sg.opt]||[]).forEach(x=>sel.append(option(x[0])));sel.value=ss.option;sel.onchange=()=>{ss.option=sel.value;refreshSlot(i)};ov.append(sel)}row.append(ov);
+  const rateCell=el('div'),costCell=el('div');row.append(rateCell);row.append(costCell);ui.stageRows[sg.id]={row,rateCell,costCell};sw.append(row)
+ }
+ refreshSlot(i)
+}
+
+function resetAll(){
+ const ticket=document.getElementById('ticketInput');if(ticket)ticket.value='';
+ if(!confirm('Сбросить все выбранные услуги и введённые данные?'))return;
+ for(let i=0;i<state.length;i++){
+  state[i]=emptyState();
+  if(slotUI[i]?.box)slotUI[i].box.remove();
+  slotUI[i]=null;
+  const r=refs[i];
+  r.t.value='';
+  r.s.innerHTML='';
+  r.s.append(option('','Сначала тип'));
+  r.cd.textContent='—';
+  r.total.textContent='—';
+ }
+ document.querySelectorAll('.slot').forEach(x=>x.remove());
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function selectedStageCost(st,sg,ss){
+ if(!ss||!ss.on)return null;
+ const c=getComplexity(st),mult=getMult(st);
+ if(c.idx===null||mult===null)return null;
+ const r=rate(sg,c.idx,ss.option);
+ if(r===null)return null;
+ if(sg.type==='Изменяемый'){
+  if(ss.qty==='')return null; const q=Number(ss.qty); if(!(q>=0))return null; return q*r*mult;
+ }
+ if(sg.type==='Дневниковый этап'){
+  const q=Number(ss.qty),d=Number(ss.days); if(!(q>0)||!(d>0))return null; return q*r*d*mult;
+ }
+ if(sg.type==='Шаг 30 слайдов'){
+  const q=Number(ss.qty); if(!(q>0))return null; return Math.ceil(q/30)*r*mult;
+ }
+ if(sg.type==='Выбор')return r;
+ return r*mult;
+}
+
+function validatePdfData(){
+ const chosen=state.map((st,i)=>({st,i})).filter(x=>x.st.sub);
+ if(!chosen.length){alert('Сначала выберите хотя бы одну подуслугу.');return null}
+ for(const item of chosen){
+  const c=getComplexity(item.st);
+  if(c.idx===null){alert(`Заполните все вопросы сложности для услуги ${item.i+1}: ${item.st.sub}.`);return null}
+  if(getMult(item.st)===null){alert(`Заполните дополнительный параметр для услуги ${item.i+1}: ${item.st.sub}.`);return null}
+  const key=item.st.type+'|'+item.st.sub;
+  for(const sg of DATA.stages[key]||[]){
+   const ss=item.st.stages[sg.id]||{};
+   if(!ss.on)continue;
+   if(selectedStageCost(item.st,sg,ss)===null){alert(`Заполните параметры выбранного этапа «${sg.name}» в услуге ${item.i+1}.`);return null}
+  }
+ }
+ return chosen;
+}
+
+function wrapCanvasText(ctx,text,maxWidth){
+ const raw=String(text??'').replace(/\s+/g,' ').trim();
+ if(!raw)return [''];
+ const words=raw.split(' '),lines=[];let line='';
+ for(const word of words){
+  const test=line?line+' '+word:word;
+  if(ctx.measureText(test).width<=maxWidth||!line)line=test;
+  else{lines.push(line);line=word}
+ }
+ if(line)lines.push(line);return lines;
+}
+
+function reportOptionCoefficient(sg,ss){
+ if(!(sg.opt==='OPT_REPORT_TURNKEY'||sg.opt==='OPT_REPORT_STANDALONE'))return 1;
+ const v=String(ss?.option||'');
+ if(v.startsWith('60 '))return 1.2;
+ if(v.startsWith('90 ')||v.startsWith('120 '))return 1.4;
+ return 1;
+}
+
+function stageCoefficientInfo(st,sg,ss){
+ const key=st.type+'|'+st.sub,sp=DATA.special[key];
+ let coefficient=1;const reasons=[];
+ const rc=reportOptionCoefficient(sg,ss);
+ if(rc>1){coefficient*=rc;reasons.push(`объём отчёта: ${ss.option}`)}
+ if(sg.type!=='Выбор'&&sp&&!sp.number){
+  const sm=sp.mult[st.special]??1;
+  if(sm>1){coefficient*=sm;reasons.push(`${sp.label}: ${st.special}`)}
+ }
+ if(coefficient<=1)return null;
+ const coefText=(Math.round(coefficient*1000)/1000).toLocaleString('ru-RU',{maximumFractionDigits:3});
+ return {coefficient,coefText,reasons,comment:`Применён коэффициент ×${coefText} — ${reasons.join('; ')}`};
+}
+
+function createReportCanvases(chosen){
+ const W=1240,H=1754,M=82,BOTTOM=92;const pages=[];let canvas,ctx,y;
+ function page(){
+  canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;ctx=canvas.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,H);y=M;pages.push(canvas);
+ }
+ function ensure(h){if(y+h>H-BOTTOM)page()}
+ function line(text,size=22,bold=false,color='#1f2937',indent=0,gap=10,maxWidth=W-2*M-indent){
+  ctx.font=`${bold?'700':'400'} ${size}px Arial, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';const lines=wrapCanvasText(ctx,text,maxWidth);const lh=Math.round(size*1.35);ensure(lines.length*lh+gap);for(const l of lines){ctx.fillText(l,M+indent,y);y+=lh}y+=gap;
+ }
+ function divider(){ensure(24);ctx.strokeStyle='#d9e1f2';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(M,y+5);ctx.lineTo(W-M,y+5);ctx.stroke();y+=24}
+ page();
+ line('Оценка проекта',34,true,'#17365d',0,6);
+ line('Статичная оценка выбранных услуг и этапов',18,false,'#667085',0,6);
+ line('Сформировано: '+new Date().toLocaleString('ru-RU'),16,false,'#667085',0,22);
+ chosen.forEach((item,pos)=>{
+  const st=item.st,key=st.type+'|'+st.sub,c=getComplexity(st),total=calcTotal(st);
+  if(pos>0)divider();
+  line(`Услуга ${item.i+1}: ${st.type} — ${st.sub}`,26,true,'#17365d',0,8);
+  line(`Сложность: ${c.label} · Итого по услуге: ${fmt(total)} SP`,21,true,'#1f2937',0,14);
+  const sp=DATA.special[key];
+  if(sp&&st.special)line(`${sp.label}: ${st.special}`,17,false,'#475467',0,12);
+  line('Выбранные этапы',20,true,'#1f2937',0,8);
+  const selected=(DATA.stages[key]||[]).filter(sg=>(st.stages[sg.id]||{}).on);
+  if(!selected.length)line('Этапы не выбраны.',17,false,'#667085',18,8);
+  const coefficientNotes=[];
+  for(const sg of selected){
+   const ss=st.stages[sg.id]||{},r=rate(sg,c.idx,ss.option),cost=selectedStageCost(st,sg,ss);let details=[];
+   if(sg.type==='Изменяемый')details.push(`количество: ${ss.qty}`);
+   if(sg.type==='Дневниковый этап'){details.push(`респонденты: ${ss.qty}`);details.push(`дни: ${ss.days}`)}
+   if(sg.type==='Шаг 30 слайдов')details.push(`слайды: ${ss.qty}`);
+   if(sg.type==='Выбор'&&ss.option)details.push(`вариант: ${ss.option}`);
+   line('• '+sg.name,17,true,'#344054',18,2,W-2*M-18);
+   if(details.length)line(details.join(' · '),16,false,'#667085',36,2,W-2*M-36);
+   line(`Вес / ставка: ${fmt(r)} SP · Стоимость этапа: ${fmt(cost)} SP`,16,false,'#475467',36,6,W-2*M-36);
+   const ci=stageCoefficientInfo(st,sg,ss);
+   if(ci)coefficientNotes.push({stage:sg.name,coefText:ci.coefText,reasons:ci.reasons});
+  }
+  if(coefficientNotes.length){
+   const grouped=new Map();
+   for(const note of coefficientNotes){
+    const key=note.coefText+'|'+note.reasons.join('; ');
+    if(!grouped.has(key))grouped.set(key,{coefText:note.coefText,reasons:note.reasons,stages:[]});
+    grouped.get(key).stages.push(note.stage);
+   }
+   line('Комментарий по коэффициентам',17,true,'#9a6700',18,4,W-2*M-18);
+   for(const note of grouped.values()){
+    const stageText=note.stages.length===1?`этап «${note.stages[0]}»`:`этапы «${note.stages.join('», «')}»`;
+    line(`Применён коэффициент ×${note.coefText} к ${stageText}. Причина: ${note.reasons.join('; ')}.`,16,false,'#9a6700',36,6,W-2*M-36);
+   }
+  }
+ });
+ pages.forEach((p,idx)=>{const c=p.getContext('2d');c.font='16px Arial, sans-serif';c.fillStyle='#98a2b3';c.textBaseline='bottom';c.fillText(`Страница ${idx+1} из ${pages.length}`,M,H-34)});
+ return pages;
+}
+
+function asciiBytes(s){return new TextEncoder().encode(s)}
+function concatByteArrays(parts){let n=0;for(const p of parts)n+=p.length;const out=new Uint8Array(n);let o=0;for(const p of parts){out.set(p,o);o+=p.length}return out}
+function dataUrlBytes(url){const b64=url.split(',')[1],bin=atob(b64),out=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)out[i]=bin.charCodeAt(i);return out}
+
+function canvasesToPdf(canvases){
+ const imgs=canvases.map(c=>dataUrlBytes(c.toDataURL('image/jpeg',0.9))),n=imgs.length,maxObj=2+n*3,objs=new Array(maxObj+1);
+ const kids=[];for(let i=0;i<n;i++)kids.push(`${3+i*3} 0 R`);
+ objs[1]=asciiBytes('<< /Type /Catalog /Pages 2 0 R >>');
+ objs[2]=asciiBytes(`<< /Type /Pages /Kids [${kids.join(' ')}] /Count ${n} >>`);
+ for(let i=0;i<n;i++){
+  const pageNo=3+i*3,imgNo=pageNo+1,contentNo=pageNo+2,img=imgs[i],name=`Im${i+1}`;
+  objs[pageNo]=asciiBytes(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /${name} ${imgNo} 0 R >> >> /Contents ${contentNo} 0 R >>`);
+  objs[imgNo]=concatByteArrays([asciiBytes(`<< /Type /XObject /Subtype /Image /Width ${canvases[i].width} /Height ${canvases[i].height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${img.length} >>\nstream\n`),img,asciiBytes('\nendstream')]);
+  const stream=`q\n595.28 0 0 841.89 0 0 cm\n/${name} Do\nQ\n`,sb=asciiBytes(stream);
+  objs[contentNo]=concatByteArrays([asciiBytes(`<< /Length ${sb.length} >>\nstream\n`),sb,asciiBytes('endstream')]);
+ }
+ const header=concatByteArrays([asciiBytes('%PDF-1.4\n%'),new Uint8Array([0xe2,0xe3,0xcf,0xd3]),asciiBytes('\n')]);
+ const parts=[header],offsets=new Array(maxObj+1).fill(0);let pos=header.length;
+ for(let i=1;i<=maxObj;i++){
+  offsets[i]=pos;const obj=concatByteArrays([asciiBytes(`${i} 0 obj\n`),objs[i],asciiBytes('\nendobj\n')]);parts.push(obj);pos+=obj.length;
+ }
+ const xrefPos=pos;let xref=`xref\n0 ${maxObj+1}\n0000000000 65535 f \n`;
+ for(let i=1;i<=maxObj;i++)xref+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
+ const tail=`trailer\n<< /Size ${maxObj+1} /Root 1 0 R >>\nstartxref\n${xrefPos}\n%%EOF`;
+ parts.push(asciiBytes(xref),asciiBytes(tail));return new Blob(parts,{type:'application/pdf'});
+}
+
+
+function downloadPdf(){
+ const chosen=validatePdfData();if(!chosen)return;
+ const canvases=createReportCanvases(chosen),blob=canvasesToPdf(canvases),url=URL.createObjectURL(blob),a=document.createElement('a');
+ const rawTicket=(document.getElementById('ticketInput')?.value||'').trim();
+ const safeTicket=rawTicket.replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').replace(/[. ]+$/g,'').slice(0,100);
+ const fileName=safeTicket?`Оценка проекта (${safeTicket}).pdf`:'Оценка проекта.pdf';
+ a.href=url;a.download=fileName;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+</script></body></html>
